@@ -33,3 +33,8 @@ uv run main.py <image_path>
 ```powershell
 uv run main.py C:\Users\user\Downloads\image.jpg
 ```
+
+## Special Thanks
+
+- **[MIYUKINNGU](https://github.com/MIYUKINNGU)**
+
