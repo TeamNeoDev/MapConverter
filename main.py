@@ -208,6 +208,8 @@ def floyd_steinberg_color_optimized(image, palette, lut):
 def convert_mcmap(image_idx, ids, palette, block):
     h, w = image_idx.shape[0], image_idx.shape[1]
     
+    min_v = 10**9
+    
     _map_data = [[[0, ""] for j in range(w)] for i in range(h+1)]
     for _i in range(h, 0, -1):
         i = _i-1
@@ -220,7 +222,12 @@ def convert_mcmap(image_idx, ids, palette, block):
             elif ids[image_idx[i][j]] % 4 == 2:
                 chg = -1
             _map_data[_i-1][j][0] = _map_data[_i][j][0] + chg
+            min_v = min(min_v, _map_data[_i-1][j][0])
             _map_data[_i][j][1] = block[image_idx[i][j]]
+    
+    for i in range(h+1):
+        for j in range(w):
+            _map_data[i][j][0] -= min_v
     
     return _map_data
 
