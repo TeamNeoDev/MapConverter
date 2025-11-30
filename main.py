@@ -274,7 +274,7 @@ print(f"Image saved in {save_image_time*1000:.2f} ms")
 print("\nSaving result (converted data)...")
 start_time = time.perf_counter()
 with open("./converted_data(merged).csv", "w", encoding="utf-8") as f:
-    f.write("\n".join(map(lambda a: ",".join(map(lambda b: str(b).replace(",", "\\,"), a)), map_data)))
+    f.write("\n".join(map(lambda a: ",".join(map(lambda b: f'"{b}"', a)), map_data)))
 with open("./converted_data(blocks).csv", "w", encoding="utf-8") as f:
     f.write("\n".join(map(lambda a: ",".join(map(lambda b: b[1], a)), map_data)))
 with open("./converted_data(y_pos).csv", "w", encoding="utf-8") as f:
